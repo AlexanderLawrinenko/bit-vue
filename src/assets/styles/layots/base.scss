@@ -58,6 +58,11 @@ div {
                     }
                 }
             }
+            .container-form {
+                &__control {
+                    display: flex;
+                }
+            }
         }
     }
     &__footer {
