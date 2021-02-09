@@ -1,11 +1,19 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import Pairs from "./pairs.module"
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
+  state: {
+  },
+  getters: {
+  },
+  mutations: {
+  },
+  actions: {
+  },
+  modules: {
+    Pairs
+  }
 });
