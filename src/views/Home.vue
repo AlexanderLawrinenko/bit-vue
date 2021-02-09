@@ -1,4 +1,4 @@
-<template>
+<template functinal>
   <div class="base-container">
     <div class="base-container__header">
       <h1>Test APP</h1>
@@ -32,7 +32,7 @@ export default {
     ListTradingPairs,
     Quotes,
     Warrants,
-    OrderHistory,
-  },
+    OrderHistory
+  }
 };
 </script>
