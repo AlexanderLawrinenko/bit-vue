@@ -15,14 +15,16 @@ const instance = axios.create({
 function generateSignature(data, method) {
     const methodInst = method === 'post' ? 'POST' : 'GET'
     console.log(methodInst, path, expires, (data ? data : ''));
-    return crypto.createHmac('sha256', API_SICRET).update(methodInst + path + expires + (data ? data : '')).digest('hex')
+    return crypto.createHmac('sha256', API_SICRET).update(methodInst + path + expires + (data ? JSON.stringify(data) : '')).digest('hex')
 }
 
 instance.interceptors.request.use( (config) => {
     if (config.url === "/order") {
-        config.headers['api-key'] = API_KEY
-        config.headers['api-signature'] = generateSignature(config.data, config.method)
-        config.headers['api-expires'] = expires
+        config.headers = {
+            'api-key': API_KEY,
+            'api-signature': generateSignature(config.data, config.method),
+            'api-expires': expires
+        }
     }
     return config
 })
