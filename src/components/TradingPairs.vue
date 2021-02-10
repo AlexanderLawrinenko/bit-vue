@@ -12,6 +12,11 @@
 
 <script>
 export default {
+  data () {
+    return {
+      ws: null
+    }
+  },
   computed: {
     instruments () {
       return this.$store.getters.getInstrument
@@ -23,11 +28,20 @@ export default {
   methods: {
     async getList () {
       await this.$store.dispatch('getList').then((result) => {
-        result && this.$store.dispatch('watchPairs')
+        result && this.initConnection()
       })
     },
     quoteHistory ({symbol}) {
       this.$store.dispatch('setQuote', symbol)
+    },
+    initConnection () {
+      this.ws = new WebSocket("wss://testnet.bitmex.com/realtime")
+      this.ws.onopen = () => {
+        this.ws.send('{"op": "subscribe", "args": "instrument"}')
+      }
+      this.ws.onmessage = ({data}) => {
+        data && this.$store.dispatch('watchPairs', data)
+      }
     }
   }
 }

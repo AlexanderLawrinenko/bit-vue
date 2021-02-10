@@ -10,5 +10,15 @@ export default {
         `/trade/bucketed?binSize=1m&partial=false&count=100&reverse=true&symbol=${symbol}`
       )
       .then(resp => resp.data);
+  },
+  async orderSend(data) {
+    return await instance
+      .post('/order', data)
+      .then(resp => resp);
+  },
+  async getOrders() {
+    return await instance
+      .get('/order')
+      .then(resp => resp);
   }
 };
