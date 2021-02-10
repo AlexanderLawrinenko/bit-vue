@@ -14,7 +14,6 @@ const instance = axios.create({
 
 function generateSignature(data, method) {
     const methodInst = method === 'post' ? 'POST' : 'GET'
-    console.log(methodInst, path, expires, (data ? data : ''));
     return crypto.createHmac('sha256', API_SICRET).update(methodInst + path + expires + (data ? JSON.stringify(data) : '')).digest('hex')
 }
 
