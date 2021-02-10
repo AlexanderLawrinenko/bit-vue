@@ -5,7 +5,11 @@ export default {
     order: null,
     orderList: []
   },
-  getters: {},
+  getters: {
+    getOrderList (state) {
+      return state.orderList
+    }
+  },
   mutations: {
     SET_OREDER(state, payload) {
       state.order = payload;

@@ -39,9 +39,6 @@ export default {
       }
     }
   },
-  created() {
-    this.$store.dispatch('getOrders')
-  },
   methods: {
     sendOrder (marker) {
       const data = {

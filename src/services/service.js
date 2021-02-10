@@ -14,11 +14,11 @@ export default {
   async orderSend(data) {
     return await instance
       .post('/order', data)
-      .then(resp => resp);
+      .then(resp => resp.data);
   },
   async getOrders() {
     return await instance
       .get('/order')
-      .then(resp => resp);
+      .then(resp => resp.data);
   }
 };

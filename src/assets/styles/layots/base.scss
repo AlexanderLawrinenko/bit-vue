@@ -1,5 +1,6 @@
 body {
-    margin: 0 auto
+    margin: 0 auto;
+    font-size: 12px;
 }
 div {
     box-sizing: border-box;
@@ -8,7 +9,7 @@ div {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #f1f1f1;
 }
 .base-container {
@@ -37,12 +38,10 @@ div {
                     grid-template-columns: repeat(auto-fit, minmax(100px, 4fr));
                     width: 100%;
                     padding: 4px 10px;
-                    text-align: left;
                     &:nth-child(odd) {
                         background: #3a3a3a;
                     }
                     &-col {
-                        font-size: 14px;
                         &:last-child {
                             color: #a2a2a2;
                         }
@@ -62,6 +61,10 @@ div {
                 &__control {
                     display: flex;
                 }
+                &__actions {
+                    display: flex;
+                    justify-content: center;
+                }
             }
         }
     }
@@ -69,5 +72,21 @@ div {
         width: 100%;
         padding: 8px 10px;
         border: 1px solid #616161;
+        max-height: 500px;
+            overflow-y: auto;
+        .footer-list {
+            width: 100%;
+            &__line {
+                display: grid;
+                grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                padding: 4px 10px;
+                &:nth-child(odd) {
+                    background: #3a3a3a;
+                }
+                &:hover {
+                    background: #525252;
+                }
+            }
+        }
     }
 }
