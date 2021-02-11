@@ -1,0 +1,16 @@
+.loader {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  &-component {
+    margin: auto;
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    border: 4px dashed yellow;
+  }
+}

@@ -1,10 +1,9 @@
 <template>
-  <div v-if="history.length" class="list-holder">
+  <div class="list-holder">
     <div
-      v-for="item in history"
+      v-for="item in getHistoreQuote"
       :key="item.timestamp"
       class="list-holder__item history-mode"
-      @click="quoteHistory(item)"
     >
       <div class="list-holder__item-col">{{ item.timestamp }}</div>
       <div class="list-holder__item-col">{{ item.open }}</div>
@@ -13,13 +12,18 @@
       <div class="list-holder__item-col">{{ item.close }}</div>
     </div>
   </div>
-  <div v-else class="list-holder">
-    <div class="list-holder__item">No Data</div>
-  </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
+  props: {
+    quote: {
+      type: String,
+      required: true
+    }
+  },
   data () {
     return {
       ws: null,
@@ -27,18 +31,11 @@ export default {
     }
   },
   computed: {
-    history() {
-      return this.$store.getters.getHistoreQuote;
-    },
+    ...mapGetters(['getHistoreQuote'])
   },
   created () {
     this.initConnection()
-    this.$store.watch(
-      (state, getters) => getters.getQuote,
-      (newVal) => {
-        if (newVal) this.initData(newVal)
-      }
-    )
+    this.initData(this.quote)
   },
   methods: {
     async initData (quote) {

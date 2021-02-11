@@ -1,4 +1,4 @@
-<template functinal>
+<template>
   <div class="base-container">
     <div class="base-container__header">
       <h1>Test APP</h1>
@@ -8,7 +8,7 @@
         <list-trading-pairs></list-trading-pairs>
       </div>
       <div class="base-container__main-item">
-        <quotes></quotes>
+        <quotes v-if="getQuote" :quote="getQuote"></quotes>
       </div>
       <div class="base-container__main-item">
         <warrants></warrants>
@@ -22,17 +22,20 @@
 
 <script>
 import ListTradingPairs from "../components/TradingPairs.vue";
-import Quotes from "../components/Quotes.vue";
 import Warrants from "../components/Warrants.vue";
 import OrderHistory from "../components/OrderHistory.vue";
+import { mapGetters } from 'vuex';
 
 export default {
   name: "Home",
   components: {
     ListTradingPairs,
-    Quotes,
+    Quotes: () => import("../components/Quotes.vue"),
     Warrants,
     OrderHistory
+  },
+  computed: {
+    ...mapGetters(['getQuote'])
   }
 };
 </script>
