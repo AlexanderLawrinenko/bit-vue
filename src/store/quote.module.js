@@ -30,11 +30,15 @@ export default {
   },
   actions: {
     async actionHistory({ commit }, payload) {
+      commit('SET_IS_LOADING', true)
       try {
-        const data = await Servisec.getHistoryQuote(payload);
-        commit("SET_QUOTE_HISTORY", data);
+        const resp = await Servisec.getHistoryQuote(payload);
+        if (resp?.data?.error) commit('SET_ERROR', resp.data.error)
+        else commit("SET_QUOTE_HISTORY", resp)
+        commit('SET_IS_LOADING', false)
         return true;
       } catch (error) {
+        commit('SET_IS_LOADING', false)
         return false;
       }
     },

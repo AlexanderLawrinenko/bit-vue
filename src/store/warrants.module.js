@@ -20,19 +20,25 @@ export default {
   },
   actions: {
     async orderSend({ commit }, payload) {
+      commit('SET_IS_LOADING', true)
       try {
-        const data = await Servisec.orderSend(payload);
-        commit("SET_OREDER", data);
+        const resp = await Servisec.orderSend(payload)
+        if (resp?.data?.error) commit('SET_ERROR', resp.data.error)
+        else commit("SET_OREDER", resp)
+        commit('SET_IS_LOADING', false)
       } catch (error) {
-        console.error(error);
+        commit('SET_IS_LOADING', false)
       }
     },
     async getOrders({ commit }) {
+      commit('SET_IS_LOADING', true)
       try {
-        const data = await Servisec.getOrders();
-        commit("SET_ORDER_LIST", data);
+        const resp = await Servisec.getOrders();
+        if (resp?.data?.error) commit('SET_ERROR', resp.data.error)
+        else commit("SET_ORDER_LIST", resp);
+        commit('SET_IS_LOADING', false)
       } catch (error) {
-        console.error(error);
+        commit('SET_IS_LOADING', false)
       }
     }
   }

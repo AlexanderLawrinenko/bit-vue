@@ -8,9 +8,18 @@
   display: flex;
   &-component {
     margin: auto;
-    height: 200px;
-    width: 200px;
+    height: 100px;
+    width: 100px;
     border-radius: 100px;
-    border: 4px dashed yellow;
+    border: 4px dashed #dedede;
+    animation: loader 5s linear 0s infinite normal none;
+  }
+}
+@keyframes loader {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
   }
 }

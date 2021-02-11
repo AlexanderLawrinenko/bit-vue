@@ -26,12 +26,15 @@ export default {
   },
   actions: {
     async getList({ commit }) {
+      commit('SET_IS_LOADING', true)
       try {
-        const data = await Servisec.getList()
-        commit("SET_INSTRUMENT", data)
+        const resp = await Servisec.getList()
+        if (resp?.data?.error) commit('SET_ERROR', resp.data.error)
+        else commit("SET_INSTRUMENT", resp)
+        commit('SET_IS_LOADING', false)
         return true
       } catch (error) {
-        console.error(error)
+        commit('SET_IS_LOADING', false)
         return false
       }
     },
