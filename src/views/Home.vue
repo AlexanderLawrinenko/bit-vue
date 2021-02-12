@@ -1,7 +1,7 @@
 <template>
   <div class="base-container">
     <div class="base-container__header">
-      <h1>Test APP</h1>
+      <h1>{{getQuote ? getQuote: 'Test APP'}}</h1>
     </div>
     <div class="base-container__main">
       <div class="base-container__main-item">

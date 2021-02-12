@@ -55,6 +55,11 @@ export default {
     sendWs (quote) {
       this.ws.send(`{"op": "subscribe", "args": "tradeBin1m:${quote}"}`)
     }
+  },
+  watch: {
+    quote (val) {
+      if (val) this.initData(val)
+    }
   }
 };
 </script>
