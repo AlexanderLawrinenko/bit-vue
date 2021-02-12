@@ -29,10 +29,16 @@ export default {
       commit('SET_IS_LOADING', true)
       try {
         const resp = await Servisec.getList()
-        if (resp?.data?.error) commit('SET_ERROR', resp.data.error)
-        else commit("SET_INSTRUMENT", resp)
         commit('SET_IS_LOADING', false)
-        return true
+        if (resp?.data?.error) {
+          commit('SET_ERROR', resp.data.error)
+          return false
+        } else if (resp) {
+          commit("SET_INSTRUMENT", resp)
+          return true
+        } else {
+          return false
+        }
       } catch (error) {
         commit('SET_IS_LOADING', false)
         return false

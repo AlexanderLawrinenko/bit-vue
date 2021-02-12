@@ -1,5 +1,5 @@
 <template>
-  <div v-if="instruments.length" class="list-holder">
+  <div v-if="instruments" class="list-holder">
       <div v-for="(item, index) in instruments" :key="index" class="list-holder__item action" @click="quoteHistory(item)">
           <div class="list-holder__item-col">{{item.symbol}}</div>
           <div class="list-holder__item-col">{{item.lastPrice}}</div>

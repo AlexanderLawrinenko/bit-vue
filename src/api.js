@@ -6,7 +6,7 @@ const API_SICRET = "-hoVHM9kC1JRwlQBPjYdzosCCpKl7CNtomzyCTGVoLcQ5PSV";
 const path = "/api/v1/order";
 
 const instance = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "/",
   headers: {
     "Content-Type": "application/json"
   }
